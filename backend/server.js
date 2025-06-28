@@ -1,8 +1,10 @@
 import express from 'express';
-import { configDotenv } from 'dotenv';
-import cors from 'cors';
 import cookieParser from 'cookie-parser';
-configDotenv()
+import cors from 'cors';
+import dotenv from 'dotenv';
+import dbConn from './config/dbConfig.mjs';
+dotenv.config();
+dbConn();
 const app = express();
 app.use(cors({
     origin:process.env.CLIENT_URL || 'http://localhost:5134',
