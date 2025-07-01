@@ -13,9 +13,20 @@ const UserSchema = new mongoose.Schema(
     password:{
         type: String,
         required:true
+    }, 
+    role:{
+      type:String,
+      required: true,
+      default: 'client'
     }
   },
   {
     timestamps: true,
   }
 );
+
+UserSchema.methods.comparePassword = function (password){
+  return (password == this.password) ? true: false
+}
+
+export default mongoose.model('User', UserSchema)
